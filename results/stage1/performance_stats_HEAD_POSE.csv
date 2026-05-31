@@ -1,0 +1,2 @@
+calibration,train_samples,test_samples,mean_pixel_error,median_pixel_error,std_pixel_error,min_pixel_error,max_pixel_error,q25_pixel_error,q75_pixel_error,mean_x_error_pixels,median_x_error_pixels,mean_y_error_pixels,median_y_error_pixels
+HEAD_POSE,400,100,662.3914918600215,472.0599284161626,523.5736104630652,46.91511811310101,2153.3270622846035,304.4465847849927,821.9822818447973,275.6498295957344,217.57380362176525,551.7060559429383,365.7354195030242

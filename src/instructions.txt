@@ -1,0 +1,12 @@
+Steps to Use VisionTouch Linear Regression
+------------------------------------------
+1. Utilize the collect_calibration.py file to collect the complete dataset yourself.
+2. There are two choices after doing the collection:
+    Choice 1: 
+    Try the stage 1 tests that test the differences when the dataset is exposed to IRIS_ONLY, FACE_CENTER, and HEAD_POSE;
+    IRIS_ONLY is the x and y of both eyes only.
+    FACE_CENTER is IRIS_ONLY with an addition of the face center x and ys 
+    HEAD_POSE is FACE_CENTER with an addition of head yaw, pitch, and roll plus face width and height
+    Choice 2:
+    Test your dataset on the ablation tests where the different results are compared with one another.
+
