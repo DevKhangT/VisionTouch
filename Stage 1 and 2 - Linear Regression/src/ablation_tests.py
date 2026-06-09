@@ -170,7 +170,7 @@ n = len(df)
 train_size = int(n * 0.8)
 
 train_df = df.iloc[:train_size].copy()
-test_df = df.iloc[train_size:].copy()
+test_df =  df.iloc[train_size:].copy() 
 
 print("\n==============================")
 print("GLOBAL DATASET SPLIT")
@@ -187,7 +187,6 @@ print("Note: dot_id was not recorded, so split-by-dot is unavailable.")
 # Run all ablations
 # --------------------------------------------------
 all_performance_results = []
-all_head_condition_results = []
 
 for ablation_name, feature_columns in ablations.items():
 
