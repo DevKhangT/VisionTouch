@@ -27,4 +27,4 @@ VisionTouch is being developed as an increasingly complex ML system, starting fr
 
 - **Stage 1 completed:** Linear regression baseline using iris, face-center, and head-pose features.
 - **Stage 2 completed:** Synthesized features and ablation testing.
-- **Stage 3 next:** Classical ML model comparison using the best feature sets from Stage 2.
+- **Stage 3 semicompleted:** Results are present. However, they seem to be extremely off from initial hypothesis. Thus, currently modifying the experimental design, and retesting.
