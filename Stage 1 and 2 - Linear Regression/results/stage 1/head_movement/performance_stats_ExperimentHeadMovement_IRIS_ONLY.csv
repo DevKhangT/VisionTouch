@@ -1,0 +1,2 @@
+calibration,train_samples,test_samples,mean_pixel_error,median_pixel_error,std_pixel_error,min_pixel_error,max_pixel_error,q25_pixel_error,q75_pixel_error,mean_x_error_pixels,median_x_error_pixels,mean_y_error_pixels,median_y_error_pixels
+IRIS_ONLY,400,100,256.09295064464857,243.78107325684186,81.89449288761561,94.55345081872339,446.1527512380884,198.32613754634525,325.89283621145654,212.92097453917293,223.677670998741,114.66405827312005,103.2869612436495

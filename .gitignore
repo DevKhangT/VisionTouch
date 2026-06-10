@@ -21,3 +21,5 @@ linear_regression_formulations/
 
 *.code-workspace
 *planning.txt
+incorrect_results/
+*ShapeTest.py

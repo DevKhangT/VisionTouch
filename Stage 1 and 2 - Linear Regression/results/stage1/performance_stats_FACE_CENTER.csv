@@ -1,2 +1,0 @@
-calibration,train_samples,test_samples,mean_pixel_error,median_pixel_error,std_pixel_error,min_pixel_error,max_pixel_error,q25_pixel_error,q75_pixel_error,mean_x_error_pixels,median_x_error_pixels,mean_y_error_pixels,median_y_error_pixels
-FACE_CENTER,400,100,412.16015911787576,370.31918957742124,246.8879771361807,62.481901571753106,1480.8866551777837,251.02566004903787,520.6902780796318,263.55527305618193,218.49628046311597,276.1023551630899,231.04093634355934

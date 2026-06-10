@@ -1,8 +1,7 @@
 import pandas as pd
 from linear_regression_scratch import LinearRegressionScratch
 import numpy as np
-import pyautogui
-
+from pathlib import Path
 # --------------------------------------------------
 # Add synthesized features
 # --------------------------------------------------
@@ -153,13 +152,23 @@ ablations = {
 # Load dataset
 # --------------------------------------------------
 dataset = input("Enter the dataset name without .csv: ")
+RESULTS_DIR = Path("..") / "results" / "stage2"/ dataset
+FEATURE_STATS_DIR = RESULTS_DIR / "feature_stats"
+TARGET_STATS_DIR = RESULTS_DIR / "target_stats"
+ABLATION_RESULTS = RESULTS_DIR / "model_results"
+PREDICTION_RESULTS_DIR = RESULTS_DIR / "prediction_results"
+
+FEATURE_STATS_DIR.mkdir(parents=True, exist_ok=True)
+TARGET_STATS_DIR.mkdir(parents=True, exist_ok=True)
+ABLATION_RESULTS.mkdir(parents=True, exist_ok=True)
+PREDICTION_RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
 df = pd.read_csv(dataset + ".csv")
 df = synthesize_features(df)
 
 target_columns = ["dot_x", "dot_y"]
 
-screen_width, screen_height = pyautogui.size()
+frame_width, frame_height = 640, 480
 
 # --------------------------------------------------
 # Fixed row-based train/test split
@@ -209,8 +218,8 @@ for ablation_name, feature_columns in ablations.items():
     target_stats = df[target_columns].describe().T
     target_stats["range"] = target_stats["max"] - target_stats["min"]
 
-    feature_stats.to_csv(f"{dataset}_feature_stats_{ablation_name}.csv")
-    target_stats.to_csv(f"{dataset}_target_stats_{ablation_name}.csv")
+    feature_stats.to_csv(FEATURE_STATS_DIR / f"{dataset}_feature_stats_{ablation_name}.csv")
+    target_stats.to_csv(TARGET_STATS_DIR / f"{dataset}_target_stats_{ablation_name}.csv")
 
     print("Feature columns:", feature_columns)
     print("Number of features:", len(feature_columns))
@@ -252,8 +261,8 @@ for ablation_name, feature_columns in ablations.items():
     # -----------------------------
     # Error metrics in pixels
     # -----------------------------
-    x_errors_pixels = np.abs(preds_test[:, 0] - y_test[:, 0]) * screen_width
-    y_errors_pixels = np.abs(preds_test[:, 1] - y_test[:, 1]) * screen_height
+    x_errors_pixels = np.abs(preds_test[:, 0] - y_test[:, 0]) * frame_width
+    y_errors_pixels = np.abs(preds_test[:, 1] - y_test[:, 1]) * frame_height
 
     total_errors_pixels = np.sqrt(
         x_errors_pixels ** 2 +
@@ -303,7 +312,7 @@ for ablation_name, feature_columns in ablations.items():
     results_df["y_error_pixels"] = y_errors_pixels
     results_df["total_error_pixels"] = total_errors_pixels
 
-    results_df.to_csv(f"{dataset}_prediction_results_{ablation_name}.csv", index=False)
+    results_df.to_csv(PREDICTION_RESULTS_DIR/f"{dataset}_prediction_results_{ablation_name}.csv", index=False)
 
     # -----------------------------
     # Save model parameters
@@ -316,15 +325,14 @@ for ablation_name, feature_columns in ablations.items():
         X_std=X_std,
         feature_columns=np.array(feature_columns)
     )
-
-
+ 
 # --------------------------------------------------
 # Save combined ablation results
 # --------------------------------------------------
 ablation_results_df = pd.DataFrame(all_performance_results)
 ablation_results_df = ablation_results_df.sort_values("mean_pixel_error")
 
-ablation_results_df.to_csv(f"{dataset}_stage2_ablation_results.csv", index=False)
+ablation_results_df.to_csv(ABLATION_RESULTS/f"{dataset}_stage2_ablation_results.csv", index=False)
 
 print("\n\n==============================")
 print("FINAL ABLATION RESULTS")

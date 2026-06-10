@@ -143,10 +143,10 @@ preds_test = model.predict(X_test_norm)
 # -----------------------------
 # Convert normalized coordinate error to pixel error
 # -----------------------------
-screen_width, screen_height = pyautogui.size()
+frame_width, frame_height = 640, 480
 
-x_errors_pixels = np.abs(preds_test[:, 0] - y_test[:, 0]) * screen_width
-y_errors_pixels = np.abs(preds_test[:, 1] - y_test[:, 1]) * screen_height
+x_errors_pixels = np.abs(preds_test[:, 0] - y_test[:, 0]) * frame_width
+y_errors_pixels = np.abs(preds_test[:, 1] - y_test[:, 1]) * frame_height
 
 errors_pixels = np.sqrt(
     x_errors_pixels ** 2 +
